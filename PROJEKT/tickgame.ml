@@ -96,14 +96,5 @@ let rec play_game board player =
     
 let () =
   print_string "Welcome to Tic-Tac-Toe!\n";
-  let final_board = play_game empty_board X in
-  clear_terminal ();
-  print_board final_board;
-  match get_winner final_board with
-    | Some p ->
-        clear_terminal();
-        print_board final_board;
-        print_player p;
-        print_string " wins!\n"
-    | None -> print_string "It's a draw\n"
-;;
+  ignore(play_game empty_board X) in
+  clear_terminal ();;
