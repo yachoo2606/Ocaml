@@ -54,11 +54,9 @@ let get_winner board =
   let lines = Array.append board (Array.append cols diags) in
   let is_win line =
     let first = line.(0) in
-    Array.fold_left (fun acc elt -> acc && first = elt) true line && first <> None
+    Array.for_all ((=) first) line && first <> None
   in
-  let winning_line = Array.fold_left (fun acc line -> match acc with
-    | Some _ -> acc
-    | None -> if is_win line then Some line else None) None lines
+  let winning_line = Array.find_opt is_win lines
   in
   match winning_line with
   | Some line -> line.(0)
